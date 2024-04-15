@@ -57,6 +57,7 @@ struct ContentView: View {
             Button("카운트 초기화") {
                 countCorrect = 0
                 countWrong = 0
+                reloadGame()
             }
         }
         .font(.largeTitle)
@@ -68,8 +69,8 @@ struct ContentView: View {
     
     func reloadGame() {
         print("새로운 게임의 시작")
-        number1 = Int.random(in: 0...10)
-        number2 = Int.random(in: 0...10)
+        number1 = Int.random(in: 1..<10)
+        number2 = Int.random(in: 1..<10)
         
         if Bool.random() {
             // 50% 실행 - 정상 결과
@@ -77,7 +78,8 @@ struct ContentView: View {
         } else {
             // 50% - 잘못된 결과
             repeat {
-                resultNumber = Int.random(in: 0...100)
+                let realResult = number1 * number2
+                resultNumber = Int.random(in: (realResult-3)..<(realResult+3))
             } while resultNumber == number1 * number2
         }
     }
