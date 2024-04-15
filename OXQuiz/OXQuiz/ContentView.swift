@@ -24,7 +24,8 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 Button {
-                    
+                    selectCorrect()
+                    reloadGame()
                 } label: {
                     HStack {
                         Image(systemName: "checkmark.diamond.fill")
@@ -35,7 +36,8 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button {
-                    
+                    selectWrong()
+                    reloadGame()
                 } label: {
                     HStack {
                         Image(systemName: "xmark.diamond")
@@ -59,6 +61,41 @@ struct ContentView: View {
         }
         .font(.largeTitle)
         .padding()
+        .onAppear {
+            reloadGame()
+        }
+    }
+    
+    func reloadGame() {
+        print("새로운 게임의 시작")
+        number1 = Int.random(in: 0...10)
+        number2 = Int.random(in: 0...10)
+        
+        if Bool.random() {
+            // 50% 실행 - 정상 결과
+            resultNumber = number1 * number2
+        } else {
+            // 50% - 잘못된 결과
+            repeat {
+                resultNumber = Int.random(in: 0...100)
+            } while resultNumber == number1 * number2
+        }
+    }
+    
+    func selectCorrect() {
+        if resultNumber == number1 * number2 {
+            countCorrect += 1
+        } else {
+            countWrong += 1
+        }
+    }
+    
+    func selectWrong() {
+        if resultNumber == number1 * number2 {
+            countWrong += 1
+        } else {
+            countCorrect += 1
+        }
     }
 }
 
