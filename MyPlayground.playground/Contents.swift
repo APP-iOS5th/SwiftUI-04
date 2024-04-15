@@ -11,8 +11,30 @@ var greeting = "Hello, playground"
 
 class BankAccount {
     // 프로퍼티
-    var accountBalance: Float = 0
     var accountNumber: Int = 0
+    var accountBalance: Float = 0
+    let fees: Float = 25.00
+    
+    
+    var balanceLessFees: Float {
+        get {
+            return accountBalance - fees
+        }
+    }
+    
+    init() {
+        accountNumber = 0
+        accountBalance = 0
+    }
+    
+    init(number: Int, balance: Float) {
+        accountNumber = number
+        accountBalance = balance
+    }
+    
+    deinit {
+        //필요한 정리작업을 수행
+    }
     
     // 인스턴스 메서드
     func displayBalance() -> Void {
