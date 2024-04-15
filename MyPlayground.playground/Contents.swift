@@ -15,12 +15,22 @@ class BankAccount {
     var accountBalance: Float = 0
     let fees: Float = 25.00
     
-    
     var balanceLessFees: Float {
         get {
             return accountBalance - fees
         }
+        set (newBalance) {
+            accountBalance = newBalance - fees
+        }
     }
+    
+    lazy var myProperty: String = {
+//        오래걸리는 작업
+//        var result = resourceIntensiveTask()
+//        result = processData(data: result)
+//        return result
+        return ""
+    }()
     
     init() {
         accountNumber = 0
@@ -49,6 +59,8 @@ class BankAccount {
 }
 
 var bankAccount = BankAccount()
+
+bankAccount.balanceLessFees = 12123.12
 
 print(bankAccount.accountBalance)
 print(bankAccount.accountNumber)
