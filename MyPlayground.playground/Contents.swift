@@ -19,8 +19,8 @@ class BankAccount {
         get {
             return accountBalance - fees
         }
-        set (newBalance) {
-            accountBalance = newBalance - fees
+        set (accountBalance) {
+            self.accountBalance = accountBalance - fees
         }
     }
     
