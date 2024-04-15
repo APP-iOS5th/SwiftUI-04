@@ -67,3 +67,42 @@ print(bankAccount.accountNumber)
 bankAccount.displayBalance()
 
 print(BankAccount.getMaxBalance())
+
+
+class SavingsAccount: BankAccount {
+    var interestRate: Float = 0.0
+    
+    init(number: Int, balance: Float, rate: Float) {
+        self.interestRate = rate
+        super.init(number: number, balance: balance)
+    }
+    
+    func calculateInterest() -> Float {
+        return interestRate * accountBalance
+    }
+    
+    override func displayBalance() {
+        super.displayBalance()
+        print("Prevailing interest reate is \(interestRate)")
+    }
+}
+
+print("------------")
+var savingAccount = SavingsAccount(number: 12311, balance: 600.00, rate: 0.07)
+
+print(savingAccount.calculateInterest())
+savingAccount.displayBalance()
+
+extension Double {
+    var squared: Double {
+        return self * self
+    }
+    
+    var cubed: Double {
+        return self * self * self
+    }
+}
+
+
+let myValue: Double = 3.0
+print(myValue.squared)
