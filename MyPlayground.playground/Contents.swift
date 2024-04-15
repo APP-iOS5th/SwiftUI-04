@@ -11,13 +11,13 @@ var greeting = "Hello, playground"
 
 class BankAccount {
     // 프로퍼티
-    var accountBlance: Float = 0
+    var accountBalance: Float = 0
     var accountNumber: Int = 0
     
     // 인스턴스 메서드
     func displayBalance() -> Void {
         print("Number \(accountNumber)")
-        print("Current balance is \(accountBlance)")
+        print("Current balance is \(accountBalance)")
     }
     
     // class 타입 메서드 상속 재정의 가능, static은 재정의 불가능
@@ -28,7 +28,7 @@ class BankAccount {
 
 var bankAccount = BankAccount()
 
-print(bankAccount.accountBlance)
+print(bankAccount.accountBalance)
 print(bankAccount.accountNumber)
 bankAccount.displayBalance()
 
