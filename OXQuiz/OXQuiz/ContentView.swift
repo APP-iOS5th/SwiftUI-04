@@ -72,11 +72,13 @@ struct ContentView: View {
         number1 = Int.random(in: 1..<10)
         number2 = Int.random(in: 1..<10)
         
-        if Bool.random() {
-            // 50% 실행 - 정상 결과
+        let seedNumber = Int.random(in: 0..<10)
+        
+        if seedNumber < 8 {
+            // 80% 실행 - 정상 결과 (0,1,2,3,4,5,6,7)
             resultNumber = number1 * number2
         } else {
-            // 50% - 잘못된 결과
+            // 20% - 잘못된 결과 (8,9)
             repeat {
                 let realResult = number1 * number2
                 resultNumber = Int.random(in: (realResult-3)..<(realResult+3))
