@@ -7,7 +7,21 @@
 
 import SwiftUI
 
-class Car: Identifiable {
+protocol CarDescriptionProtocol {
+    var brand: String { get }
+    var modelName: String { get }
+    var year: Int { get }
+    
+    func getDetails() -> String
+}
+
+extension CarDescriptionProtocol {
+    func getDetails() -> String {
+        return "Brand: \(brand)\nModel: \(modelName)\nYear: \(year)"
+    }
+}
+
+class Car: Identifiable, CarDescriptionProtocol {
     let id = UUID()
     var brand: String
     var modelName: String
@@ -106,6 +120,22 @@ struct ContentView: View {
     }
 }
 
+struct CarDetailView: View {
+    let car: Car
+    
+    var body: some View {
+        VStack (spacing: 20) {
+            Text(car.modelName)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Text(car.getDetails())
+                .font(.body)
+        }
+        .padding()
+    }
+}
+
 #Preview {
-    ContentView()
+    CarDetailView(car: teslaModelY)
 }
