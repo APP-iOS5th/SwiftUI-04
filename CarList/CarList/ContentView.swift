@@ -86,17 +86,17 @@ struct ContentView: View {
     var body: some View {
         List {
             Section(header: Text("Electric Cars")) {
-                ForEach(cars.filter { $0 is ElectricCar}, id: \.id) { car in
+                ForEach(cars.filter { $0 is ElectricCar}) { car in
                     Text(car.modelName)
                 }
             }
             Section(header: Text("Oil Cars")) {
-                ForEach(cars.filter { $0 is OilCar}, id: \.id) { car in
+                ForEach(cars.filter { $0 is OilCar}) { car in
                     Text(car.modelName)
                 }
             }
             Section(header: Text("Hybrid Cars")) {
-                ForEach(cars.filter { $0 is HybridCar}, id: \.id) { car in
+                ForEach(cars.filter { $0 is HybridCar}) { car in
                     Text(car.modelName)
                 }
             }
