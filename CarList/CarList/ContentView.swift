@@ -15,12 +15,6 @@ protocol CarDescriptionProtocol {
     func getDetails() -> String
 }
 
-extension CarDescriptionProtocol {
-    func getDetails() -> String {
-        return "Brand: \(brand)\nModel: \(modelName)\nYear: \(year)"
-    }
-}
-
 class Car: Identifiable, CarDescriptionProtocol {
     let id = UUID()
     var brand: String
@@ -39,6 +33,10 @@ class Car: Identifiable, CarDescriptionProtocol {
         self.weight = weight
         self.height = height
     }
+    
+    func getDetails() -> String {
+        return "Brand: \(brand)\nModel: \(modelName)\nYear: \(year)"
+    }
 }
 
 class ElectricCar: Car {
@@ -53,6 +51,10 @@ class ElectricCar: Car {
         self.autoLevel = autoLevel
         super.init(brand: brand, modelName: modelName, year: year, doorCount: doorCount,
                    weight: weight, height: height)
+    }
+    
+    override func getDetails() -> String {
+        return super.getDetails() + "\nElectric Efficiency: \(electricEfficiency)\nChargeHour: \(fullChargeHours)"
     }
 }
 
@@ -132,7 +134,7 @@ struct CarDetailView: View {
     let car: Car
     
     var body: some View {
-        VStack (spacing: 20) {
+        VStack (alignment: .leading, spacing: 20) {
             Text(car.modelName)
                 .font(.largeTitle)
                 .fontWeight(.bold)
