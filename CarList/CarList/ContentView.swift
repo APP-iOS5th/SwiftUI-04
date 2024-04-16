@@ -98,25 +98,33 @@ let cars: [Car] = [teslaModelX, teslaModelY, kiaK5, kiaK8, kiaK9, prius, grandeu
 
 struct ContentView: View {
     var body: some View {
-        List {
-            Section(header: Text("Electric Cars")) {
-                ForEach(cars.filter { $0 is ElectricCar}) { car in
-                    Text(car.modelName)
+        NavigationStack {
+            List {
+                Section(header: Text("Electric Cars")) {
+                    ForEach(cars.filter { $0 is ElectricCar}) { car in
+                        NavigationLink(destination: CarDetailView(car: car)) {
+                            Text(car.modelName)
+                        }
+                    }
                 }
-            }
-            Section(header: Text("Oil Cars")) {
-                ForEach(cars.filter { $0 is OilCar}) { car in
-                    Text(car.modelName)
+                Section(header: Text("Oil Cars")) {
+                    ForEach(cars.filter { $0 is OilCar}) { car in
+                        NavigationLink(destination: CarDetailView(car: car)) {
+                            Text(car.modelName)
+                        }
+                    }
                 }
-            }
-            Section(header: Text("Hybrid Cars")) {
-                ForEach(cars.filter { $0 is HybridCar}) { car in
-                    Text(car.modelName)
+                Section(header: Text("Hybrid Cars")) {
+                    ForEach(cars.filter { $0 is HybridCar}) { car in
+                        NavigationLink(destination: CarDetailView(car: car)) {
+                            Text(car.modelName)
+                        }
+                    }
                 }
+                
             }
-
+            .navigationTitle("Car List")
         }
-        .padding()
     }
 }
 
@@ -137,5 +145,5 @@ struct CarDetailView: View {
 }
 
 #Preview {
-    CarDetailView(car: teslaModelY)
+    ContentView()
 }
