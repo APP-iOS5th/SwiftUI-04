@@ -38,6 +38,10 @@ print(bookDict.count)
 print(bookDict[1, default: "NoValue"] )
 bookDict[1231000] = "Value"
 
+let findValue = "Value2"
 for (bookId, value) in bookDict {
+    if value == findValue {
+        print(bookId)
+    }
     print("Book Id: \(bookId) Value: \(value)")
 }
