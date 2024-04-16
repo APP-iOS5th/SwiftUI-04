@@ -37,4 +37,44 @@ var address = Address()
 address.city = "London"
 print(address.city)
 
+@propertyWrapper
+struct MinMaxVal<V: Comparable> {
+    var value: V
+    let min: V
+    let max: V
+    
+    init(wrappedValue: V, min: V, max: V) {
+        value = wrappedValue
+        self.min = min
+        self.max = max
+    }
+    
+    var wrappedValue: V {
+        get { return value }
+        set {
+            if newValue > max {
+                value = max
+            } else if newValue < min {
+                value = min
+            } else {
+                value = newValue
+            }
+            
+        }
+    }
+}
 
+struct Demo {
+    @MinMaxVal(min: 10, max:150) var value: Int = 100
+    @MinMaxVal(min: "Apple", max: "Orange") var value2: String = ""
+}
+
+var demo = Demo()
+
+demo.value2 = "Banana"
+
+print(demo.value2)
+
+demo.value2 = "Pear"
+
+print(demo.value2)
