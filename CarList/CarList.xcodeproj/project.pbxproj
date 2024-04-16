@@ -11,9 +11,12 @@
 		3763AC142BCE50A3009E009A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC132BCE50A3009E009A /* ContentView.swift */; };
 		3763AC162BCE50A4009E009A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3763AC152BCE50A4009E009A /* Assets.xcassets */; };
 		3763AC192BCE50A4009E009A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3763AC182BCE50A4009E009A /* Preview Assets.xcassets */; };
-		3763AC202BCE6E7A009E009A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC1F2BCE6E7A009E009A /* Models.swift */; };
 		3763AC222BCE6F39009E009A /* CarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC212BCE6F39009E009A /* CarDetailView.swift */; };
-		3763AC242BCE6FBD009E009A /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC232BCE6FBD009E009A /* Mock.swift */; };
+		3763AC242BCE6FBD009E009A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC232BCE6FBD009E009A /* Data.swift */; };
+		3763AC262BCE70D1009E009A /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC252BCE70D1009E009A /* Car.swift */; };
+		3763AC282BCE70DA009E009A /* ElectricCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC272BCE70DA009E009A /* ElectricCar.swift */; };
+		3763AC2A2BCE70E9009E009A /* OilCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC292BCE70E9009E009A /* OilCar.swift */; };
+		3763AC2C2BCE70F6009E009A /* HybridCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763AC2B2BCE70F6009E009A /* HybridCar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,9 +25,12 @@
 		3763AC132BCE50A3009E009A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3763AC152BCE50A4009E009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3763AC182BCE50A4009E009A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3763AC1F2BCE6E7A009E009A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		3763AC212BCE6F39009E009A /* CarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
-		3763AC232BCE6FBD009E009A /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		3763AC232BCE6FBD009E009A /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		3763AC252BCE70D1009E009A /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		3763AC272BCE70DA009E009A /* ElectricCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricCar.swift; sourceTree = "<group>"; };
+		3763AC292BCE70E9009E009A /* OilCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilCar.swift; sourceTree = "<group>"; };
+		3763AC2B2BCE70F6009E009A /* HybridCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridCar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +63,12 @@
 		3763AC102BCE50A3009E009A /* CarList */ = {
 			isa = PBXGroup;
 			children = (
-				3763AC1F2BCE6E7A009E009A /* Models.swift */,
-				3763AC232BCE6FBD009E009A /* Mock.swift */,
+				3763AC2D2BCE7102009E009A /* Models */,
 				3763AC112BCE50A3009E009A /* CarListApp.swift */,
 				3763AC132BCE50A3009E009A /* ContentView.swift */,
 				3763AC212BCE6F39009E009A /* CarDetailView.swift */,
 				3763AC152BCE50A4009E009A /* Assets.xcassets */,
+				3763AC232BCE6FBD009E009A /* Data.swift */,
 				3763AC172BCE50A4009E009A /* Preview Content */,
 			);
 			path = CarList;
@@ -74,6 +80,17 @@
 				3763AC182BCE50A4009E009A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3763AC2D2BCE7102009E009A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3763AC252BCE70D1009E009A /* Car.swift */,
+				3763AC272BCE70DA009E009A /* ElectricCar.swift */,
+				3763AC292BCE70E9009E009A /* OilCar.swift */,
+				3763AC2B2BCE70F6009E009A /* HybridCar.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,8 +163,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3763AC202BCE6E7A009E009A /* Models.swift in Sources */,
-				3763AC242BCE6FBD009E009A /* Mock.swift in Sources */,
+				3763AC2A2BCE70E9009E009A /* OilCar.swift in Sources */,
+				3763AC282BCE70DA009E009A /* ElectricCar.swift in Sources */,
+				3763AC242BCE6FBD009E009A /* Data.swift in Sources */,
+				3763AC262BCE70D1009E009A /* Car.swift in Sources */,
+				3763AC2C2BCE70F6009E009A /* HybridCar.swift in Sources */,
 				3763AC142BCE50A3009E009A /* ContentView.swift in Sources */,
 				3763AC222BCE6F39009E009A /* CarDetailView.swift in Sources */,
 				3763AC122BCE50A3009E009A /* CarListApp.swift in Sources */,
