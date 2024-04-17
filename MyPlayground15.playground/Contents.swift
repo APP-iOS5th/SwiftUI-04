@@ -1,11 +1,27 @@
+import Foundation
 let connectionOK = true
 let connectionSpeed = 30.00
 let fileFound = true
 
-enum FileTransferError: Error {
+// Localizable.strings(Korean) 예시
+// "noConnection" = "연결이 없습니다."
+// "lowBandwidth" = "속도가 느립니다."
+
+enum FileTransferError: Error, LocalizedError {
     case noConnection
     case lowBandwidth
     case fileNotFound
+    
+    var errorDescription: String? {
+        switch self {
+        case .noConnection:
+            return NSLocalizedString("noConnection", comment: "No Connetion")
+        case .lowBandwidth:
+            return NSLocalizedString("lowBandwidth", comment: "")
+        case .fileNotFound:
+            return NSLocalizedString("fileNotFound", comment: "")
+        }
+    }
 }
 
 func fileTransfer() throws {
@@ -32,12 +48,12 @@ func sendFile() -> String {
     
     do {
         try fileTransfer()
-    } catch FileTransferError.noConnection, FileTransferError.lowBandwidth {
+    } catch FileTransferError.noConnection {
         return "Connection Problems"
     } catch FileTransferError.fileNotFound {
         return "File Not Found"
     } catch let error {
-        return "Unknown error"
+        return "Unknown error \(error.localizedDescription)"
     }
     return "Successful transfer"
 }
