@@ -1,6 +1,6 @@
 let connectionOK = true
 let connectionSpeed = 30.00
-let fileFound = false
+let fileFound = true
 
 enum FileTransferError: Error {
     case noConnection
@@ -24,16 +24,22 @@ func fileTransfer() throws {
 }
 
 func sendFile() -> String {
+    
+    defer {
+        // 파일 닫기 등 종료 준비
+        print("end of sendFile")
+    }
+    
     do {
         try fileTransfer()
-    } catch FileTransferError.noConnection {
-        return "No Connection"
-    } catch FileTransferError.lowBandwidth {
-        return "Speed too low"
+    } catch FileTransferError.noConnection, FileTransferError.lowBandwidth {
+        return "Connection Problems"
     } catch FileTransferError.fileNotFound {
         return "File Not Found"
-    } catch {
+    } catch let error {
         return "Unknown error"
     }
     return "Successful transfer"
 }
+
+print(sendFile())
