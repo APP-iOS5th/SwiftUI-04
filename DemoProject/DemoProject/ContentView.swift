@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var fileopen: Bool = true
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        var myString: String = "File closed"
+        if(fileopen) {
+            myString = "File open"
         }
-        .padding()
+        return VStack {
+            HStack {
+                Text(myString)
+                    .padding()
+                Text("Goodbye, world")
+            }
+        }
     }
 }
 
