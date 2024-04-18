@@ -51,7 +51,7 @@ struct ContentView: View {
         
         switch button {
         case "=":
-            print("Calculate!")
+            calculate()
         case "C":
             inputValue = "0"
         case "+","-","*","/":
@@ -62,6 +62,62 @@ struct ContentView: View {
         default:
             inputValue += button
         }
+    }
+    
+    func calculate() {
+        let operators: [Character] = ["+", "-", "*", "/"]
+        if operators.contains(inputValue.suffix(1)) {
+            inputValue = "Invalid Input"
+            return
+        }
+        
+        var numbers = [Double]()
+        var currentNumber = ""
+        var currentOperator = "+"
+        
+        for char in inputValue {
+            print("-----")
+            print(char)
+            if operators.contains(char) {
+                if let number = Double(currentNumber) {
+                    switch currentOperator {
+                    case "+":
+                        numbers.append(number)
+                    case "-":
+                        numbers.append(-number)
+                    case "*":
+                        numbers[numbers.count - 1] *= number
+                    case "/":
+                        numbers[numbers.count - 1] /= number
+                    default:
+                        break
+                    }
+                    currentNumber = ""
+                    currentOperator = String(char)
+                }
+            } else {
+                currentNumber += String(char)
+            }
+        }
+        
+        if !currentNumber.isEmpty {
+            if let number = Double(currentNumber) {
+                switch currentOperator {
+                case "+":
+                    numbers.append(number)
+                case "-":
+                    numbers.append(-number)
+                case "*":
+                    numbers[numbers.count - 1] *= number
+                case "/":
+                    numbers[numbers.count - 1] /= number
+                default:
+                    break
+                }
+            }
+        }
+        
+        inputValue = String(numbers.reduce(0,+))
     }
 }
 
