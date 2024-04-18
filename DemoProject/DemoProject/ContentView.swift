@@ -7,31 +7,26 @@
 
 import SwiftUI
 
-struct MyVStack<Content: View>: View {
-    let content: () -> Content
-    
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
-    
-    var body: some View {
-        VStack(spacing: 10) {
-            content()
-        }
-        .font(.largeTitle)
-    }
-}
-
 struct ContentView: View {
     var body: some View {
-        MyVStack {
-            Text("Text Item 1")
-            Text("Text Item 2")
-            Text("Text Item 3")
+        VStack {
             HStack {
-                Image(systemName: "star.fill")
-                Image(systemName: "star.fill")
-                Image(systemName: "star")
+                Image(systemName:"goforward.10")
+                Image(systemName:"goforward.15")
+                Image(systemName:"goforward.30")
+            }
+            .padding()
+            
+            HStack(alignment: .top) {
+                Text("Q1 Sales")
+                    .font(.headline)
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text("January")
+                    Text("February")
+                    Text("March")
+                }
+                Spacer()
             }
         }
     }
