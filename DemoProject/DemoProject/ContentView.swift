@@ -90,7 +90,7 @@ struct ContentView: View {
                 }
             }
             
-            if let error = error {
+            if let error = viewModel.error {
                 Text("Error: \(error.localizedDescription)")
                     .foregroundColor(.red)
             }
