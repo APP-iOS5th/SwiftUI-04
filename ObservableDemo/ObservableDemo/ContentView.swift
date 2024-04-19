@@ -17,16 +17,21 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding()
-                Button(action: resetCount) {
+                Button(action: timerData.resetCount) {
                     Text("Reset Counter")
                 }
+                
+                NavigationLink(destination: SecondView(timerData: timerData)) {
+                    Text("Next Screen")
+                }
+                .padding()
             }
         }
     }
     
-    func resetCount() {
-        timerData.resetCount()
-    }
+//    func resetCount() {
+//        timerData.resetCount()
+//    }
 }
 
 #Preview {
