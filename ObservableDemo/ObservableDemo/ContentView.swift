@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var timerData: TimerData = TimerData()
-    
+    @EnvironmentObject var timerData: TimerData
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -37,4 +37,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(TimerData())
 }
