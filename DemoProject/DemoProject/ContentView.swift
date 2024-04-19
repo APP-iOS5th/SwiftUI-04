@@ -78,6 +78,26 @@ struct ContentView: View {
                 }
             }
             
+            Button("Fetch Data in Background") {
+                Task.detached {
+                    do {
+                        let service = GithubService()
+                        try await withThrowingTaskGroup(of: Void.self) { group in
+                            group.addTask {
+                                repositories = try await service.fetchRepositories(username: username)
+                            }
+                            group.addTask {
+                                user = try await service.fetchUser(username: username)
+                            }
+                            try await group.waitForAll()
+                        }                                            
+                    } catch {
+                        DispatchQueue.main.async {
+                            print("\(error)")
+                        }
+                    }
+                }
+            }
         }
     }
 }
