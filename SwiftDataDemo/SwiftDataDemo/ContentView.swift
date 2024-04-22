@@ -30,6 +30,11 @@ struct ContentView: View {
             List {
                 ForEach(tasks) { task in
                     HStack {
+                        Button(action: {
+                            toggleCompletion(for: task)
+                        }) {
+                            Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
+                        }
                         Text(task.title)
                         Spacer()
                         if task.completed {
@@ -63,6 +68,10 @@ struct ContentView: View {
     
     func deleteTask(_ task: Task) {
         modelContext.delete(task)
+    }
+    
+    func toggleCompletion(for task: Task) {
+        task.completed.toggle()
     }
 }
 
