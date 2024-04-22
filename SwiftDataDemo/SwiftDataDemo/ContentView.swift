@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
-class Task: Identifiable {
+@Model
+class Task {
     var id: UUID
     var title: String
     var completed: Bool
@@ -20,13 +22,8 @@ class Task: Identifiable {
 }
 
 struct ContentView: View {
-    @State var tasks: [Task] = [
-        Task(title: "Title1"),
-        Task(title: "Title2"),
-        Task(title: "Title3"),
-        Task(title: "Title4"),
-        Task(title: "Title5"),
-    ]
+    @Query var tasks: [Task]
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         NavigationStack {
@@ -53,8 +50,8 @@ struct ContentView: View {
     }
     
     func addTask() {
-        let newTask = Task(title: "New Task")
-        self.tasks.append(newTask)
+        let newTask = Task(title: "Task #\(tasks.count+1)")
+        modelContext.insert(newTask)
     }
 }
 
