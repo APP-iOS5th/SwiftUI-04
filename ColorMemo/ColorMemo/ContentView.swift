@@ -11,7 +11,8 @@ import SwiftData
 struct ContentView: View {
     @State var showSheet = false
     @Environment(\.modelContext) var modelContext
-    @Query var memos: [Memo]
+//    @Query(sort: [SortDescriptor(\Memo.text, order: .forward)]) var memos: [Memo]
+    @Query(sort: \Memo.text) var memos: [Memo]
 
     var body: some View {
         NavigationStack {
@@ -87,6 +88,7 @@ struct MemoAddView: View {
             }
             .padding()
             
+            ColorPicker("", selection: $memoColor).padding()
             HStack {
                 ForEach(colors, id: \.self) { color in
                     Button {
