@@ -29,7 +29,7 @@ struct ContentView: View {
                     }
                     .padding()
                     .foregroundColor(.white)
-//                    .background(memo.color)
+                    .background(memo.color)
                     .shadow(radius: 3)
                     .padding()
                     .contextMenu {
@@ -80,7 +80,7 @@ struct MemoAddView: View {
                 }
                 Spacer()
                 Button("완료") {
-                    addMemo(memoText/*, color: memoColor*/)
+                    addMemo(memoText, color: memoColor)
                     showSheet = false
                 }
                 .disabled(memoText.isEmpty)
@@ -125,8 +125,8 @@ struct MemoAddView: View {
         }
     }
     
-    func addMemo(_ text: String/*,color: Color*/) {
-        let memo = Memo(text: text/*, color: Color, created: Date()*/)
+    func addMemo(_ text: String, color: Color) {
+        let memo = Memo(text: text, color: color, created: Date())
         modelContext.insert(memo)
     }
     
