@@ -9,11 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
     @State var showSheet = false
+    @ObservedObject var memoStore = MemoStore()
     
     var body: some View {
         NavigationStack {
-            List {
-                // TODO: list item
+            List (memoStore.memos) { memo in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(memo.text)")
+                            .font(.title)
+                        
+                        Text("\(memo.createdString)")
+                            .font(.body)
+                            .padding(.top)
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(memo.color)
+                    .shadow(radius: 3)
+                    .padding()
+                    .contextMenu {
+                        ShareLink(item: memo.text)
+                        Button {
+                            memoStore.removeMemo(memo)
+                        } label: {
+                            Image(systemName: "trash")
+                            Text("삭제")
+                        }
+                    }
+
+                    Spacer()
+                }
+
             }
             .listStyle(.plain)
             .navigationTitle("mememo")
@@ -29,10 +58,13 @@ struct ContentView: View {
                 MemoAddView(showSheet: $showSheet)
             }
         }
+        .environmentObject(memoStore)
     }
 }
 
 struct MemoAddView: View {
+    @EnvironmentObject var memoStore: MemoStore
+    
     @Binding var showSheet: Bool
     @State var memoColor: Color = .blue
     @State var memoText: String = ""
@@ -47,7 +79,7 @@ struct MemoAddView: View {
                 }
                 Spacer()
                 Button("완료") {
-                    // TODO: add Memo
+                    memoStore.addMemo(memoText, color: memoColor)
                     showSheet = false
                 }
                 .disabled(memoText.isEmpty)
